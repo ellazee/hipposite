@@ -2,11 +2,15 @@ var express = require('express');
 var User = require('../models/user');
 var router = express.Router();
 
+
+// router.get("/", function (req,res) {
+//   res.render("index.ejs");
+// });
 router.route('/')
   .get(function(req, res) {
     User.find(function(err, users) {
       if (err) return res.status(500).send(err);
-      res.send(users);
+      res.render('index.ejs', {users:users});
     });
   })
   .post(function(req, res) {
@@ -22,6 +26,7 @@ router.get('/:id', function(req, res) {
     res.send(user);
   });
 });
+
 
 
 module.exports = router;

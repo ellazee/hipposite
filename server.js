@@ -25,9 +25,11 @@ var Shift = require('./models/shift');
 // 	if(err) return console.log(err);
 // 	console.log(user);
 // })
-app.get("/", function (req,res) {
-	res.render("index.ejs");
-});
+
+app.use('/', require('./controllers/users.js'));
+
+
+
 
 
 
