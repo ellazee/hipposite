@@ -5,14 +5,23 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-mongoose.connect('mongodb://node:nodeuser@mongo.onmodulus.net:27017/uwO3mypu');
-
+mongoose.connect('mongodb://localhost/hipposite');
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api + json'}));
 app.use(methodOverride());
+
+var User = require('./models/user');
+var Shift = require('./models/shift');
+
+User.create({ name: "ella", email: "ellazerickson@gmail.com"}, function(err, user) {
+	if(err) return console.log(err);
+	console.log(user);
+})
+
+
 
 
 
